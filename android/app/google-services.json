@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "340887494341",
+    "project_id": "auth-firebase-lesson-a0b63",
+    "storage_bucket": "auth-firebase-lesson-a0b63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340887494341:android:d45c44e9d391af4429daac",
+        "android_client_info": {
+          "package_name": "com.example.lesson_36_firebase_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340887494341-ofsgj3tjee4e3c6ujf1fv0vv9fp8s353.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVRdGIT0S52E_1haj9bu_Up7fUPmtXNdg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340887494341-ofsgj3tjee4e3c6ujf1fv0vv9fp8s353.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "340887494341-noa6lt6b9sfss6lt7hjbp11o0j6o68qd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.lesson36FirebaseAuth.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
