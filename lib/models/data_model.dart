@@ -3,11 +3,12 @@ class DataModel {
   String? image;
   String? id;
 
-  DataModel({this.data, this.image});
+  DataModel({this.data, this.image, this.id});
 
   DataModel.fromJson(Map<String, dynamic> json) {
     data = json['data'];
     image = json['image'];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {

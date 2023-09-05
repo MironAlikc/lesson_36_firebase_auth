@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_36_firebase_auth/firebase_services.dart';
-import 'package:lesson_36_firebase_auth/home_page.dart';
+import 'package:lesson_36_firebase_auth/screens/home_page.dart';
+import 'package:lesson_36_firebase_auth/services/firebase_services.dart';
+import 'package:lesson_36_firebase_auth/screens/registr_page.dart';
+import 'package:lesson_36_firebase_auth/screens/reset_password.dart';
 
-class RegistrPage extends StatelessWidget {
-  const RegistrPage({super.key});
+class AuthPage extends StatelessWidget {
+  const AuthPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +13,7 @@ class RegistrPage extends StatelessWidget {
     final TextEditingController controlerPassword = TextEditingController();
     final service = FirebaseServices();
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.green),
+      appBar: AppBar(backgroundColor: Colors.blue),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
@@ -45,13 +47,12 @@ class RegistrPage extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Colors.blue,
                 ),
                 onPressed: () async {
-                  bool isAuthorized = await service.registartio(
-                    email: controlerEmail.text,
-                    password: controlerPassword.text,
-                   );
+                  bool isAuthorized = await service.authByEmail(
+                      email: controlerEmail.text,
+                      password: controlerPassword.text);
                   if (isAuthorized) {
                     Navigator.push(
                       context,
@@ -68,12 +69,35 @@ class RegistrPage extends StatelessWidget {
                   }
                 },
                 child: const Text(
-                  'Registr',
+                  'Auth',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
               ),
+            ),
+            const SizedBox(height: 25),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ResetPasswordPade(),
+                  ),
+                );
+              },
+              child: const Text('Forgot password'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegistrPage(),
+                  ),
+                );
+              },
+              child: const Text('Rgistration'),
             ),
           ],
         ),
