@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_36_firebase_auth/firebase_services.dart';
-import 'package:lesson_36_firebase_auth/home_page.dart';
-import 'package:lesson_36_firebase_auth/registr_page.dart';
-import 'package:lesson_36_firebase_auth/reset_password.dart';
+import 'package:lesson_36_firebase_auth/services/firebase_services.dart';
+import 'package:lesson_36_firebase_auth/screens/user_data_page.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class RegistrPage extends StatelessWidget {
+  const RegistrPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +11,10 @@ class AuthPage extends StatelessWidget {
     final TextEditingController controlerPassword = TextEditingController();
     final service = FirebaseServices();
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue),
+      appBar: AppBar(
+        title: const Text('Регистрация'),
+        backgroundColor: Colors.green,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
@@ -47,17 +48,18 @@ class AuthPage extends StatelessWidget {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.green,
                 ),
                 onPressed: () async {
-                  bool isAuthorized = await service.authByEmail(
-                      email: controlerEmail.text,
-                      password: controlerPassword.text);
+                  bool isAuthorized = await service.registartio(
+                    email: controlerEmail.text,
+                    password: controlerPassword.text,
+                  );
                   if (isAuthorized) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomePage(),
+                        builder: (context) => UserDataPage(),
                       ),
                     );
                   } else {
@@ -69,35 +71,12 @@ class AuthPage extends StatelessWidget {
                   }
                 },
                 child: const Text(
-                  'Auth',
+                  'Next',
                   style: TextStyle(
                     color: Colors.white,
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 25),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ResetPasswordPade(),
-                  ),
-                );
-              },
-              child: const Text('Forgot password'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegistrPage(),
-                  ),
-                );
-              },
-              child: const Text('Rgistration'),
             ),
           ],
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_36_firebase_auth/firebase_services.dart';
+import 'package:lesson_36_firebase_auth/services/firebase_services.dart';
 
 class ResetPasswordPade extends StatelessWidget {
   const ResetPasswordPade({super.key});

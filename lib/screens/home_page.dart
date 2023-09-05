@@ -1,22 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:lesson_36_firebase_auth/data_model.dart';
-import 'package:lesson_36_firebase_auth/firebase_services.dart';
+import 'package:lesson_36_firebase_auth/screens/profile_screen.dart';
+import 'package:lesson_36_firebase_auth/services/firebase_services.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    final TextEditingController image = TextEditingController();
+    final TextEditingController dataController = TextEditingController();
+    final TextEditingController imageController = TextEditingController();
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.amber),
+        appBar: AppBar(
+          backgroundColor: Colors.amber,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.verified_user,
+              ),
+            ),
+          ],
+        ),
         body: Padding(
           padding: const EdgeInsets.all(25.0),
           child: Column(
             children: [
               TextField(
-                controller: controller,
+                controller: dataController,
                 maxLines: 5,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -26,7 +43,7 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 25),
               TextField(
-                controller: image,
+                controller: imageController,
                 maxLines: 5,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -44,10 +61,8 @@ class HomePage extends StatelessWidget {
                   ),
                   onPressed: () {
                     FirebaseServices().createData(
-                      model: DataModel(
-                        data: controller.text,
-                        image: image.text,
-                      ),
+                      data: dataController.text,
+                      image: imageController.text,
                     );
                   },
                   child: const Text(
